@@ -1,5 +1,5 @@
 use crate::models::users::User;
-use actix_web::{web, HttpRequest, HttpResponse, Responder};
+use actix_web::{web, HttpResponse};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -9,7 +9,6 @@ pub struct UserData {
 
 pub async fn create(item: web::Json<UserData>) -> HttpResponse {
     let user = User::create(&(item.name));
-    println!("{:?}",user);
+    println!("{:?}", user);
     HttpResponse::Created().body("Inserting")
-
 }
